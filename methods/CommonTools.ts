@@ -35,7 +35,7 @@ export default class CommonTools {
         return colors
     }
 
-    // 同一组装response
+    // 统一组装response
     static formatResponse(message: string = 'success', code: number = 200, res: any, data: any,) {
         res.json({
             code,

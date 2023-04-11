@@ -1,3 +1,10 @@
+/*
+ * @Author: 张超越 
+ * @Date: 2023-04-11 21:45:56 
+ * @Last Modified by:   张超越 
+ * @Last Modified time: 2023-04-11 21:45:56 
+ */
+
 // 导入文件工具类
 import FileTools from './FileTools'
 import PathTools from './PathTools'
@@ -39,6 +46,13 @@ import extractd from 'extractd'
 import e from 'express'
 
 // 图片类
+/**
+ * @description 图片工具类，继承FileTools类
+ * @author 张超越
+ * @export
+ * @class ImageTools
+ * @extends {FileTools}
+ */
 export default class ImageTools extends FileTools {
   buffer!: Buffer
   details: any

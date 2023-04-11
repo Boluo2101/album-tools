@@ -1,3 +1,10 @@
+/*
+ * @Author: 张超越 
+ * @Date: 2023-04-11 21:46:07 
+ * @Last Modified by:   张超越 
+ * @Last Modified time: 2023-04-11 21:46:07 
+ */
+
 // 依赖项
 import * as fs from 'fs'
 import * as crypto from 'crypto'
@@ -13,6 +20,13 @@ type FileType = {
 }
 
 // 一份文件类
+/**
+ * @description 文件工具类，继承PathTools类
+ * @author 张超越
+ * @export
+ * @class FileTools
+ * @extends {PathTools}
+ */
 export default class FileTools extends PathTools {
   fileType!: any
   md5!: string

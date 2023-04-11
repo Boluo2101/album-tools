@@ -1,3 +1,10 @@
+/*
+ * @Author: 张超越 
+ * @Date: 2023-04-11 21:45:51 
+ * @Last Modified by:   张超越 
+ * @Last Modified time: 2023-04-11 21:45:51 
+ */
+
 // 依赖项
 import * as fs from 'fs'
 import * as path from 'path'
@@ -5,6 +12,13 @@ import { randomUUID, UUID } from 'crypto'
 import CommonTools from './CommonTools'
 
 // 一份文件类
+/**
+ * @description 路径工具类，继承CommonTools类，增加了isExist、path、pathEncode、stat、isFile、isDirectory、name、uuid属性
+ * @author 张超越
+ * @export
+ * @class PathTools
+ * @extends {CommonTools}
+ */
 export default class PathTools extends CommonTools {
   isExist: boolean = false
   path: string

@@ -1,39 +1,59 @@
-Log 0 背景
- 由于近几年使用了不同平台的手机，相册多次迁移导致相同图片存了多份，手动图片去重工作量繁重，又由于Vue3发布已久，一直没有机会使用Vue3来编写前端项目，于是我开始尝试自己开发一套用于相册图片（包括视频）去重的工具，并期望以此巩固我对Nodejs的知识理解与对Vue3的上手练习，同时以测试和体验Nodejs的更多特性和可能性。于是，这个项目诞生了，以下为Nodejs端的介绍，Vue3前端项目请移步另一工程。
+## **背景** Background
+1，项目立项背景请查阅 `docs/README.md`
+
+1, Project background please refer to `docs/README.md`
 
 
-Log 1 前期性能调优感悟
 
-一、最开始，我尝试了Jimp，这是一个优秀的纯JS图片处理库，但是在海量数据面前，性能问题被无限放大（我相信Jimp能在纯浏览器端得到更高价值体现）。
+## **简介** Description
+1， 一个使用Node.js开发的图片/视频处理工具的后端项目，其依赖于Libvips、FFmpeg、Webp-converter等库。使用Express.js作为服务框架，使用Sqlite3作为应用数据库，使用Sequelize作为ORM框架。
 
-二、其后，我尝试了GM和ImageMagick，这是两款知名的跨平台图片处理库，但是在Windows上GM没有提供单个的可执行文件，ImageMagick的调用也太麻烦，于是我开始寻找其他解决方案。
-
-三、一段时间后，我发现使用谷歌的WebpC（webp-converter）库将图片初始化为Webp格式，然后再反转换为Jpeg格式，性能特别不错，且成倍提升性能的同时可以大大减少图片的体积，于是我开始尝试使用Webp格式。
-
-四、最后，我偶然发现了Sharp，这是一个基于libvips的图片处理库，它的性能更加优秀，于是我开始使用Sharp来处理图片。根据Sharp的官方测试，其性能是Jimp的35倍左右，且支持Webp，这使得我可以继续使用步骤三的处理流程。
-
-五、除了常规的图片格式处理，iOS的Heic格式和数码相机的Raw格式的照片也需要兼容处理，庆幸的是我找到的处理库性能还在可接受范围内，它们分别是：Heic-decode、Heic-convert和Extractd（基于ExifTool）。
-
-六、当然，Exif的处理也是一个重要的环节，我尝试了多种方案后决定使用Exifr，它的原理和我最初的想法一致，仅读取文件的头部Chunk信息，而不是读取整个文件。当然，它提供了更加完善的处理。
-
-七、在整个调优过程中的某一天我突然感悟，你或许可以忽视一滴水，但是你无法忽视一片海，任何微小的性能和内存损耗都会在海量数据面前显得无比可怕。
-
-八、除了以上CPU运算方面的优化，IO优化也是性能调优的一个重要点，最初数据归类和缓存我粗暴的使用纯文件处理，后期发现还是得用上轻量级的应用数据库，Sqlite3是一个优秀的本地数据库，Sequelize更让数据操作变得简单，以至于你在该C端软件的开发过程中可以完全抛弃对数据管理和维护的顾虑。
-
-八、展望与深入
-  用Nodejs处理CPU密集型的任务固然是具有挑战性的，尽管你尽可能的使用多进程和内存共享，但这也几乎收效甚微。当前选择引入和依赖第三方语言成熟的库的方案仅是Nodejs性能调优的一种解。如果你想要更加纯粹的Nodejs单一性和更深入Nodejs底层的学习，可以尝试从以下几个方面继续研究和完善本项目，包括但不限于
-  8.1 使用Rust/C++为Nodejs编写WASM模块（WebAssembly）
-  8.2 使用Rust/C++为Nodejs编写N-API模块（.node模块）
-  8.3 使用Rust/Go为Nodejs编写CPU密集型任务处理功能，通过命令行调用和通信
-  8.4 尝试使用GPU进行运算和图处理
-  8.5 尝试将Worker模块改为多进程下的多线程模型，主Hoster 对 多进程 对 多线程, 1:N:N
-
-九、短期内的目标
-  9.1 ImageTools类的初始化（init方法）的插件机制，将非常规格式的图片预处理任务独立为插件，定义标准输出（预期为一张Webp和Jpeg图像）。
-  9.2 VideoTools类的基础方法，实现对视频文件的基础解析和处理。
-  9.3 图片主色调提取的方法优化，尝试复用内存中的Buffer数据或缓存的图片数据，减少CPU计算量和内存占用。
-  9.4 pHash算法的优化，尝试移植为内部模块，传入缓存的Buffer或流式读取图片，提高IO性能。
-  9.5 相似颜色的对比方法，传入一个颜色，从常量颜色表中返回与其相似的颜色，用以后期同色调图片筛选。
+1, A backend project of image/video processing tool developed by Node.js, which depends on Libvips, FFmpeg, Webp-converter and so on. Express.js is used as the service framework, Sqlite3 is used as the application database, and Sequelize is used as the ORM framework.
 
 
-                                    Zcy 于 2023年4月8日 02点49分
+## **运行环境** Runtime Environment
+1， 基于现代前端的基础环境如Node.js等安装不过多介绍，执行 `npm install` 或 `yarn` 安装依赖，在Windows环境下，你可能需要添加前缀来使用yarn，如 `npx yarn`。
+
+1, Based on the basic environment of modern front-end such as Node.js, there is no need to introduce the installation in detail. Execute `npm install` or `yarn` to install dependencies. In the Windows environment, you may need to add a prefix to use yarn, such as `npx yarn`.
+
+
+## **开发** Development
+1，执行 `tsc --watch` 启动开发模式
+1, Execute `tsc --watch` to start the development mode
+
+## **配置图片库路径** Configure the path of the image library
+1，请修改 `configs/index.ts` 中的 `rootPath` `cachePath` 等名称中带有`Path`的配置项，指向你的图片库路径。
+
+1, Please modify the configuration item with `Path` in the name of `rootPath` `cachePath` in `configs/index.ts` to point to your image library path.
+
+## **编译** Compile
+1，执行 `tsc` 编译项目，编译结果位于 `dist` 目录下
+
+1, Execute `tsc` to compile the project, the compilation result is located in the `dist` directory
+
+## **数据预处理** Data Preprocessing
+1，注意，执行预处理任务前，你需要先执行 `tsc` 编译项目。
+
+1, Note that before executing the preprocessing task, you need to first execute `tsc` to compile the project.
+
+
+2，你可在项目启动前执行图片库预处理任务，这是一个多进程的任务，启动后会自动开始预处理图片库，执行 `创建图片缩略图` `计算图片pHash特征值` 等任务，执行预处理任务后，你的后续接口请求会更快得到响应。
+
+2, You can execute the image library preprocessing task before starting the project. This is a multi-process task. After starting, it will automatically start preprocessing the image library and execute tasks such as `Create Image Thumbnail` `Calculate Image pHash Feature Value`. After executing the preprocessing task, your subsequent interface requests will get a faster response.
+
+
+3，推荐你在服务启动前或设备空闲时执行预处理任务，执行 `node ./dist/worker/index.js` 即可。
+
+3, It is recommended that you execute the preprocessing task before the service starts or when the device is idle. Execute `node ./dist/worker/index.js` to do so.
+
+
+## **启动服务（热更新）** Start Service (Hot Update)
+1，执行 `nodemon dist/app.js` 启动热更新式的服务，当你改动任意TS文件，会自动编译JS文件，然后服务会自动重启。
+
+1, Execute `nodemon dist/app.js` to start the hot update service. When you change any TS file, the JS file will be automatically compiled, and the service will automatically restart.
+
+
+## **启动服务（进程守护）** Start Service (Process Guard)
+1， 执行 `pm2 start dist/app.js` 启动进程守护式的服务，此模式启动的服务在报错进程退出后，会自动重启。更多文档请查阅pm2官网。
+
+1, Execute `pm2 start dist/app.js` to start the process guard service. The service started in this mode will automatically restart after the error process exits. For more documents, please refer to the pm2 official website.

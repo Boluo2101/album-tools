@@ -1,3 +1,10 @@
+/*
+ * @Author: 张超越 
+ * @Date: 2023-04-11 21:45:30 
+ * @Last Modified by:   张超越 
+ * @Last Modified time: 2023-04-11 21:45:30 
+ */
+
 // 导入文件工具类
 import FileTools from './FileTools'
 import VideoDB from './VideoDB'
@@ -8,6 +15,13 @@ import Ffmpeg from '../utils/Ffmpeg'
 import CONFIGS from '../configs/index'
 import getColors from 'get-image-colors'
 
+/**
+ * @description 视频工具类，继承FileTools类
+ * @author 张超越
+ * @export
+ * @class VideoTools
+ * @extends {FileTools}
+ */
 export default class VideoTools extends FileTools {
   isVideo: boolean = false
   inited: boolean = false

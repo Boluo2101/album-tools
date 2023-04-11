@@ -7,6 +7,8 @@ interface PHashArrayItem {
 interface PHashArrayItemReturn {
   index: number
   indexs: number[]
+  title: string
+  description: string
 }
 
 export { PHashArrayItemReturn, PHashArrayItem }

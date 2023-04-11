@@ -13,6 +13,9 @@ import FileTools from '../methods/FileTools'
 const imageDb = new ImageDB()
 const { formatResponse } = CommonTools
 
+// Types
+import { PHashArrayItemReturn, PHashArrayItem } from '../types/PHashArray'
+
 // 路由
 let router = express.Router()
 
@@ -138,6 +141,25 @@ router.post('/moveToTrash', async (req, res) => {
   const result = await Promise.allSettled(images.map((image: ImageTools) => image.moveToTrash(false)))
   await imageDb.deleteManyByKey('path', paths).catch((err: any) => console.error(err))
   formatResponse('success', 200, res, result)
+})
+
+// 对比图片数组
+router.post('/compares', async (req, res) => {
+  const objArray: PHashArrayItem[] = req.body.objArray
+  // 预期数组格式
+  // [
+  //   { index: 0, pHash: '1111111100000000' },
+  //   { index: 1, pHash: '1111111100000000' },
+  //   ...
+  // ]
+
+  // 如果不是数组，或者数组长度小于2，直接返回
+  if (!Array.isArray(objArray) || objArray.length < 2) {
+    return formatResponse('success', 200, res, [])
+  }
+
+  const comparesed: PHashArrayItemReturn[] = ImageTools.mapToArray(ImageTools.comparePHashArray(objArray))
+  formatResponse('success', 200, res, comparesed)
 })
 
 export default router

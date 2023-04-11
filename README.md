@@ -1,7 +1,7 @@
 ## **背景** Background
 1，项目立项背景请查阅 `docs/README.md`
 
-1, Project background please refer to `docs/README.md`
+1, Project background please refer to  [`docs/README.md`](https://www.example.com/my%20great%20page)
 
 
 

@@ -11,9 +11,9 @@
 1,A backend project of image/video processing tool developed by Node.js, which depends on Libvips, FFmpeg, Webp-converter and so on. Express.js is used as the service framework, Sqlite3 is used as the application database, and Sequelize is used as the ORM framework.
 
 ## Sharp镜像源配置
-1，本项目依赖于Sharp库，Sharp库在国内下载速度较慢，你可以使用淘宝镜像源来加速下载，具体配置可查阅 [Sharp官方文档](https://sharp.pixelplumbing.com/install#alpine-linux)。或者在安装依赖前在终端中分别执行 `npm config set sharp_binary_host "https://npm.taobao.org/mirrors/sharp"` 和 
+1，本项目依赖于Sharp库，如果遇到下载缓慢的情况，你可以使用镜像源来加速下载，具体配置可查阅 [Sharp官方文档](https://sharp.pixelplumbing.com/install#alpine-linux)。或者在安装依赖前在终端中分别执行 `npm config set sharp_binary_host "https://npm.taobao.org/mirrors/sharp"` 和 
 `npm config set sharp_libvips_binary_host "https://npm.taobao.org/mirrors/sharp-libvips"`
-1, This project depends on the Sharp library. The Sharp library downloads slowly in China. You can use the Taobao mirror source to accelerate the download. You can refer to the [Sharp official document](https://sharp.pixelplumbing.com/install#alpine-linux) for specific configuration. Or execute `npm config set sharp_binary_host "https://npm.taobao.org/mirrors/sharp"` and `npm config set sharp_libvips_binary_host "https://npm.taobao.org/mirrors/sharp-libvips"` in the terminal before installing the dependencies.
+1, This project depends on the Sharp library. If you encounter slow download, you can use the mirror source to accelerate the download. You can refer to [Sharp Official Documentation](https://sharp.pixelplumbing.com/install#alpine-linux) for specific configuration. Or execute `npm config set sharp_binary_host "https://npm.taobao.org/mirrors/sharp"` and `npm config set sharp_libvips_binary_host "https://npm.taobao.org/mirrors/sharp-libvips"` in the terminal before installing dependencies.
 
 ## **运行环境** Runtime Environment
 1，基于现代前端的基础环境如Node.js等安装不过多介绍，执行 `npm install` 或 `yarn` 安装依赖，在Windows环境下，你可能需要添加前缀来使用yarn，如 `npx yarn`。

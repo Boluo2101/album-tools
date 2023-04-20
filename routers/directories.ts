@@ -1,5 +1,3 @@
-// 文件夹， express 路由模块
-
 // 配置信息
 import CONFIGS from '../configs/index'
 

@@ -22,6 +22,7 @@ export default {
     db: {
         fileName: 'database.sqlite',
         fileNameOfVideos: 'databaseOfVideos.sqlite',
+        fileNameOfRSS: 'databaseOfRSS.sqlite',
         createManyNumber: 1000,
         log: false
     },

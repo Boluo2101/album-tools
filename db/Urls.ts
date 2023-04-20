@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
 
-import sequelize from "./index"
+import sequelize from "./indexRSS"
 
 const Urls = sequelize.define('urls', {
   uuid: {
@@ -8,13 +8,17 @@ const Urls = sequelize.define('urls', {
     allowNull: false,
     primaryKey: true,
   },
-  name: {
+  title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   url: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  links: {
+    type: DataTypes.JSON,
+    defaultValue: [],
   },
   domain: {
     type: DataTypes.STRING,
@@ -47,6 +51,9 @@ const Urls = sequelize.define('urls', {
   },
   tags: {
     type: DataTypes.STRING,
+  },
+  rawDate: {
+    type: DataTypes.DATE,
   },
   importType: {
     type: DataTypes.INTEGER,

@@ -29,6 +29,12 @@ app.use('/directories', directories)
 import videos from './routers/videos'
 app.use('/videos', videos)
 
+import users from './routers/users'
+app.use('/users', users)
+
+import rss from './routers/rss'
+app.use('/rss', rss)
+
 app.listen(CONFIGS.ports.server, () => {
     console.info(`App listening on port ${CONFIGS.ports.server}!`)
 })

@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
 
-import sequelize from "./index"
+import sequelize from "./indexRSS"
 
 const Collections = sequelize.define('collections', {
   uuid: {

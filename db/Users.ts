@@ -48,6 +48,17 @@ const Users = sequelize.define('users', {
   gender: {
     type: DataTypes.STRING,
   },
+  birthDate: {
+    type: DataTypes.DATE,
+  },
+  regDate: {
+    type: DataTypes.DATE,
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+
   // SNS
   github: {
     type: DataTypes.STRING,

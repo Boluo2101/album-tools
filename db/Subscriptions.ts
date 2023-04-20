@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
 
-import sequelize from "./index"
+import sequelize from "./indexRSS"
 
 const Subscriptions = sequelize.define('subscriptions', {
   uuid: {
@@ -15,7 +15,10 @@ const Subscriptions = sequelize.define('subscriptions', {
   createByUUID: {
     type: DataTypes.STRING,
   },
-  parentUUID: {
+  categoryUUID: {
+    type: DataTypes.STRING,
+  },
+  rssUUID: {
     type: DataTypes.STRING,
   },
   rssCounts: {

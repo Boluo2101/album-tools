@@ -2,11 +2,13 @@
 import express from 'express'
 import { json } from 'body-parser'
 import CONFIGS from './configs/index'
+import bodyParser from 'body-parser'
 
 // 初始化
 const app = express()
-app.use(json())
-
+app.use(json({limit: '100mb'}))
+app.use(bodyParser.json({limit:'100mb'}));
+app.use(bodyParser.urlencoded({ limit:'100mb', extended: true }));
 // 所有请求允许跨域
 app.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')

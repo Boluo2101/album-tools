@@ -20,7 +20,8 @@ import { PHashArrayItemReturn, PHashArrayItem } from '../types/PHashArray'
 let router = express.Router()
 
 router.get('/', async (req, res) => {
-  let directories = new DirectoryTools(CONFIGS.rootPath)
+  let path = decodeURIComponent(req.query.path as string)
+  let directories = new DirectoryTools(path || CONFIGS.rootPath)
   let pictures = await ImageTools.getPicturesByDirectories(directories)
   formatResponse('success', 200, res, pictures)
 })

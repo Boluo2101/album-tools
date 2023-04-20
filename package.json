@@ -5,7 +5,7 @@
     "@types/node": "^18.15.5",
     "typescript": "^5.0.2"
   },
-  "name": "album-tools",
+  "name": "juhe-tools",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

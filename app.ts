@@ -37,6 +37,9 @@ app.use('/users', users)
 import rss from './routers/rss'
 app.use('/rss', rss)
 
+import categories from './routers/categories'
+app.use('/categories', categories)
+
 app.listen(CONFIGS.ports.server, () => {
     console.info(`App listening on port ${CONFIGS.ports.server}!`)
 })

@@ -105,7 +105,9 @@ export default class UsersDB extends DbBase {
 			where,
 		}
 
-		const user = await this.dbModel.findOne(queryOptions)
+		console.log("getUser", queryOptions)
+
+		const user = await this.dbModel.findOne(queryOptions).catch((err: any) => console.error(err))
 		user && this.updateTimes(user)
 		return user
 	}
@@ -119,6 +121,7 @@ export default class UsersDB extends DbBase {
 	}
 
 	getUserByEmail(email: string, type = "all"): Promise<any> {
+		console.log("getUserByEmail", email, type)
 		return this.getUser({ by: "email", value: email, type })
 	}
 

@@ -120,6 +120,7 @@ export default class DbBase {
 	}
 
 	updateTimes(item: any, num: number = 1) {
+		console.info("updateTimes", item.times, num)
 		let updatestr = {
 			times: item.times + num,
 		}

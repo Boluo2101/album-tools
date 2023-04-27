@@ -11,6 +11,7 @@ import * as path from 'path'
 import { randomUUID, UUID } from 'crypto'
 import CommonTools from './CommonTools'
 
+
 // 一份文件类
 /**
  * @description 路径工具类，继承CommonTools类，增加了isExist、path、pathEncode、stat、isFile、isDirectory、name、uuid属性

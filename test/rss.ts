@@ -23,7 +23,6 @@ const rssUrls = [
 	"https://jesor.me/feed.xml",
 	"http://shanglei.net/feed",
 	"http://www.geekpark.net/rss",
-	"http://wanqu.co/feed",
 	"https://www.changhai.org/feed.xml",
 	"https://feed.appinn.com",
 	"https://feed.iplaysoft.com",
